@@ -9,3 +9,5 @@ infra-key.pub
 
 terraform.tfstate
 terraform.tfstate.backup
+
+teraform-custom-modules.code-workspace
