@@ -252,3 +252,111 @@ ansible prodserver -m ping
 You should receive a ping response from all instances under the prodserver group.
 
 ![check connection from inv](https://github.com/user-attachments/assets/fee28951-22e1-46c6-8320-d8420aa3126a)
+
+##  Deploying Static Web Pages with Ansible Playbooks
+
+This section demonstrates how to automate the installation of **Nginx** and deploy a **static HTML page** across all environments (Dev, Staging, Prod) using Ansible.
+
+---
+
+### Step 1: Create a Directory for Ansible Playbooks
+
+```bash
+mkdir ~/ansible/playbooks
+cd ~/ansible/playbooks
+```
+### step 2: Create a Playbook to Install Nginx
+Create a file named install_nginx_play.yaml:
+```bash
+vim install_nginx_play.yaml
+```
+Add the following content:
+```bash
+---
+- name: Install Nginx
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: latest
+
+    - name: Start and Enable Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+```
+### Step 3: Create a Playbook to Deploy a Static Page
+Create the deployment playbook:
+```bash
+vim deploy_static_page_play.yaml
+```
+Add the following content:
+```bash
+---
+- name: Deploy Static Page via Nginx
+  hosts: all
+  become: yes
+  tasks:
+    - name: Include Nginx Installation
+      import_tasks: tasks/install_nginx.yaml
+
+    - name: Deploy Web Page
+      copy:
+        src: index.html
+        dest: /var/www/html/
+```
+### Step 4: Create a tasks/ Directory and Move Nginx Installation Logic
+Organize your tasks to improve readability and reusability:
+```bash
+mkdir tasks
+vim tasks/install_nginx.yaml
+```
+Add the Nginx installation content:
+```bash
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: latest
+
+- name: Start and Enable Nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+```
+📌 Note: The above file contains only tasks (no hosts, become, or name at the play level) because it is imported inside another playbook.
+
+### step 5: Create the HTML File
+```bash
+vim index.html
+```
+Add any HTML content to test Nginx deployment
+
+### step 6: Run the Playbooks
+Run the Nginx installation playbook:
+```bash
+ansible-playbook install_nginx_play.yaml
+```
+![nginx-install](https://github.com/user-attachments/assets/951b96ac-ab6b-4294-b5f7-aba7654f1ab6)
+
+
+Then deploy the static page:
+```bash
+ansible-playbook deploy_static_page_play.yaml
+```
+![deployed](https://github.com/user-attachments/assets/16e35e73-350c-4bdc-9f88-d44cd9f49989)
+
+
+### Step 7: Verify the Deployment
+Open a browser and access the public IPs of your EC2 instances in each environment:
+```bash
+http://<ec2-public-ip>
+```
+You should see the static web page successfully served via Nginx.
+![final](https://github.com/user-attachments/assets/36753f0f-93e9-4479-9607-6b1f1c725340)
+
+
