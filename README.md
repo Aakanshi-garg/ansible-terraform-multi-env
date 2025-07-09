@@ -180,3 +180,19 @@ Confirm the apply when prompted to provision resources.
 ![tables](https://github.com/user-attachments/assets/8a2f2286-194f-45cc-884f-3a218081e2ec)
 
 
+## 3. Secure the Private Key
+Before using the private key, ensure that it is securely encrypted by setting proper permissions. This prevents other users from accessing it. Run the following command to restrict the access:
+```bash
+chmod 400 infra-key  # Set read-only permissions for the owner to ensure security
+```
+This command ensures that the private key (infra-key) is only readable by you, preventing others from accessing or modifying it.
+
+## 4. Access EC2 Instances
+After provisioning, you can SSH into the EC2 instances using the generated infra-key:
+```bash
+ssh -i infra-key ubuntu@<your-ec2-ip>
+```
+---
+Terraform steps done ,now going to setup with ansible
+---
+
