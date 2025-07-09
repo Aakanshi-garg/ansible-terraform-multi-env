@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DevOps Automation Project</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+
+    header {
+      background-color: #1e293b;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #38bdf8;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      border-left: 5px solid #38bdf8;
+      padding-left: 10px;
+      color: #facc15;
+    }
+
+    .code-box {
+      background-color: #1e293b;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      color: #a5f3fc;
+      border: 1px solid #334155;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #1e293b;
+      color: #94a3b8;
+    }
+
+    a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>DevOps Project: Infra Automation</h1>
+    <p class="tagline">Terraform + Ansible + AWS | Fully Automated Stack</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>🚀 Project Overview</h2>
+      <p>This project automates the provisioning of cloud infrastructure using <strong>Terraform</strong> and configures servers using <strong>Ansible</strong>. It's designed to accelerate deployment, improve consistency, and reduce manual effort.</p>
+    </section>
+
+    <section>
+      <h2>🧱 Tech Stack</h2>
+      <ul>
+        <li>💠 Terraform for Infrastructure as Code</li>
+        <li>🔧 Ansible for Configuration Management</li>
+        <li>☁️ AWS EC2, VPC, S3, and more</li>
+        <li>📜 YAML + Bash + HTML</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📦 Sample Terraform Snippet</h2>
+      <div class="code-box">
+        resource "aws_instance" "my_instance" {
+          ami           = "ami-12345678"
+          instance_type = "t2.micro"
+          key_name      = "infra-key"
+        }
+      </div>
+    </section>
+
+    <section>
+      <h2>📂 Project Structure</h2>
+      <div class="code-box">
+        /terraform-custom-modules/
+        ├── infra-app/
+        │   ├── ec2.tf
+        │   ├── s3.tf
+        │   └── dynamodb.tf
+        ├── remote-infra/
+        ├── infra-key
+        └── main.tf
+      </div>
+    </section>
+
+    <section>
+      <h2>🔗 GitHub Repository</h2>
+      <p>Check out the full source code on <a href="https://github.com/yourusername/project-repo" target="_blank">GitHub</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    Built with ❤️ by Aakanshi Garg | © 2025
+  </footer>
+
+</body>
+</html>
