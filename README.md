@@ -359,4 +359,7 @@ http://<ec2-public-ip>
 You should see the static web page successfully served via Nginx.
 ![final](https://github.com/user-attachments/assets/36753f0f-93e9-4479-9607-6b1f1c725340)
 
+## Infrastructure Destroy
+After successfully implementing and managing your infrastructure across multiple environments with Terraform and Ansible, it's time to clean up and destroy all the resources that were provisioned. This step ensures that no resources are left running, which helps avoid unnecessary costs.
+
 
