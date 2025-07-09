@@ -15,8 +15,6 @@ This Project involves:
 ## Project Diagram
 
 ![architecture](https://github.com/user-attachments/assets/cfc23cf7-1e4d-44f3-aae1-a59ca0a1275d)
-
-
 ## 1. Installing Terraform on Ubuntu
 
 Follow the steps below to install the latest version of Terraform on an Ubuntu system:
