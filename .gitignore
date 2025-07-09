@@ -1,0 +1,11 @@
+.terraform 
+
+errored.tfstate
+
+.terraform.lock.hcl
+
+infra-key
+infra-key.pub
+
+terraform.tfstate
+terraform.tfstate.backup
