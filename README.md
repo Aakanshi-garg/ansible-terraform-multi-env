@@ -195,4 +195,60 @@ ssh -i infra-key ubuntu@<your-ec2-ip>
 ---
 Terraform steps done ,now going to setup with ansible
 ---
+## 5. 🔧 Setting Up Ansible for Configuration Management
 
+Once your development EC2 instance is up and running, you can configure it as your **Ansible control node** to manage all environments (dev, staging, prod) from a central point.
+
+---
+
+###  Step 1: Create the Ansible Working Directory
+
+SSH into the **Dev environment EC2 instance** and create a dedicated folder for Ansible:
+
+```bash
+mkdir ansible
+cd ansible
+```
+### Step 2: Install Ansible on the Control Node
+Install Ansible using the official PPA:
+```bash
+sudo apt update
+sudo apt install -y software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo apt install -y ansible
+```
+
+### Step 3: Configure the Ansible Inventory
+Open the Ansible inventory file located at /etc/ansible/hosts:
+``` bash
+sudo vim /etc/ansible/hosts
+```
+Add the following inventory configuration, replacing the IPs with your actual public IPs from each environment:
+```bash
+[devserver]
+dev-infra-instance ansible_host=3.133.159.129
+
+[prodserver]
+prod-infra-instance ansible_host=18.191.200.113
+prod-infra-instance ansible_host=3.139.70.252
+
+[stageserver]
+staging-infra-instance ansible_host=18.221.54.18
+
+[all:vars]
+ansible_ssh_private_key_file = /home/ubuntu/ansible/infra-key
+ansible_python_interpreter = /usr/bin/python3
+ansible_user = ubuntu
+```
+📌 Note: Ensure the private key (infra-key) used during EC2 creation is copied to /home/ubuntu/ansible/ with correct permissions:
+```bash
+chmod 400 infra-key
+```
+### Step 4: Test Ansible Connectivity
+To verify Ansible is correctly configured and can reach your servers, run the following command (for example, testing production group):
+```bash
+ansible prodserver -m ping
+```
+You should receive a ping response from all instances under the prodserver group.
+
+![check connection from inv](https://github.com/user-attachments/assets/fee28951-22e1-46c6-8320-d8420aa3126a)
