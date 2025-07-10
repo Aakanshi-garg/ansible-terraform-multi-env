@@ -4,7 +4,7 @@ resource "aws_key_pair" "shared_key" {
 }
 
 module "dev-infra"{
-    source = "./infra-app"
+    source = "./infra-app" 
     env = "dev"
     bucket_name = "bucket-developer-aakanshi"
     instance_name = "infra-instance"
